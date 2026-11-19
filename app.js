@@ -1,6 +1,7 @@
 // 1. Buscamos los elementos del HTML por su id
 const entrada = document.getElementById("entrada");
 const botonBuscar = document.getElementById("btn-buscar");
+const seccionResultados = document.getElementById("resultados");
 
 // 2. Función que busca canciones en iTunes
 async function buscarCanciones() {
@@ -10,8 +11,29 @@ async function buscarCanciones() {
   const respuesta = await fetch(direccion);
   const datos = await respuesta.json();
 
-  console.log(datos.results);
+  mostrarResultados(datos.results);
 }
 
-// 3. Ejecutamos la búsqueda
+// 3. Función que dibuja las canciones en pantalla
+function mostrarResultados(canciones) {
+  seccionResultados.innerHTML = "";
+
+  for (let i = 0; i < canciones.length; i++) {
+    const cancion = canciones[i];
+
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "cancion";
+
+    tarjeta.innerHTML =
+      '<img src="' + cancion.artworkUrl100 + '">' +
+      "<div>" +
+      "<p>" + cancion.trackName + "</p>" +
+      '<p class="artista">' + cancion.artistName + "</p>" +
+      "</div>";
+
+    seccionResultados.appendChild(tarjeta);
+  }
+}
+
+// 4. Ejecutamos la búsqueda
 botonBuscar.addEventListener("click", buscarCanciones);

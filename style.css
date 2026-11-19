@@ -45,3 +45,33 @@ main {
   padding: 20px;
   border-radius: 10px;
 }
+
+.cancion {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #1e1e1e;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancion:hover {
+  background-color: #2a2a2a;
+}
+
+.cancion img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.cancion p {
+  margin: 0;
+}
+
+.artista {
+  color: #b3b3b3;
+  font-size: 14px;
+}
