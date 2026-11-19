@@ -75,3 +75,18 @@ main {
   color: #b3b3b3;
   font-size: 14px;
 }
+
+#panel-letra img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+#panel-letra h2 {
+  margin-bottom: 5px;
+}
+
+#panel-letra audio {
+  width: 100%;
+  margin-top: 15px;
+}

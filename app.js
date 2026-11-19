@@ -2,6 +2,7 @@
 const entrada = document.getElementById("entrada");
 const botonBuscar = document.getElementById("btn-buscar");
 const seccionResultados = document.getElementById("resultados");
+const panelLetra = document.getElementById("panel-letra");
 
 // 2. Función que busca canciones en iTunes
 async function buscarCanciones() {
@@ -13,6 +14,8 @@ async function buscarCanciones() {
 
   mostrarResultados(datos.results);
 }
+
+
 
 // 3. Función que dibuja las canciones en pantalla
 function mostrarResultados(canciones) {
@@ -31,8 +34,21 @@ function mostrarResultados(canciones) {
       '<p class="artista">' + cancion.artistName + "</p>" +
       "</div>";
 
+    tarjeta.addEventListener("click", function () {
+      mostrarReproductor(cancion);
+    });
+
     seccionResultados.appendChild(tarjeta);
   }
+}
+
+// Función que muestra el reproductor de una canción
+function mostrarReproductor(cancion) {
+  panelLetra.innerHTML =
+    '<img src="' + cancion.artworkUrl100 + '">' +
+    "<h2>" + cancion.trackName + "</h2>" +
+    '<p class="artista">' + cancion.artistName + "</p>" +
+    '<audio controls autoplay src="' + cancion.previewUrl + '"></audio>';
 }
 
 // 4. Ejecutamos la búsqueda
