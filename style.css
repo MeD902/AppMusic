@@ -1,0 +1,47 @@
+body {
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background-color: #1db954;
+  padding: 20px;
+  text-align: center;
+}
+
+.buscador {
+  margin-top: 10px;
+}
+
+input {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+main {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+#resultados {
+  width: 40%;
+}
+
+#panel-letra {
+  width: 60%;
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+}
