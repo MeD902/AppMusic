@@ -6,7 +6,7 @@ const panelLetra = document.getElementById("panel-letra");
 
 // 2. Función que busca canciones en iTunes
 async function buscarCanciones() {
-  const texto = entrada.value;
+  const texto = encodeURIComponent(entrada.value);
   const direccion = "https://itunes.apple.com/search?term=" + texto + "&media=music&limit=10";
 
   const respuesta = await fetch(direccion);
@@ -48,7 +48,28 @@ function mostrarReproductor(cancion) {
     '<img src="' + cancion.artworkUrl100 + '">' +
     "<h2>" + cancion.trackName + "</h2>" +
     '<p class="artista">' + cancion.artistName + "</p>" +
-    '<audio controls autoplay src="' + cancion.previewUrl + '"></audio>';
+    '<audio controls autoplay src="' + cancion.previewUrl + '"></audio>' +
+    '<div id="letra">Buscando letra...</div>';
+
+  buscarLetra(cancion);
+}
+
+// Función que busca la letra en LRCLIB y la muestra
+async function buscarLetra(cancion) {
+  const direccion =
+    "https://lrclib.net/api/search?track_name=" + encodeURIComponent(cancion.trackName) +
+    "&artist_name=" + encodeURIComponent(cancion.artistName);
+
+  const respuesta = await fetch(direccion);
+  const resultados = await respuesta.json();
+
+  const cajaLetra = document.getElementById("letra");
+
+  if (resultados.length > 0 && resultados[0].plainLyrics) {
+    cajaLetra.textContent = resultados[0].plainLyrics;
+  } else {
+    cajaLetra.textContent = "No se encontró la letra de esta canción.";
+  }
 }
 
 // 4. Ejecutamos la búsqueda
